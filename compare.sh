@@ -1,4 +1,5 @@
 #! /bin/bash
+# dave@networkdave.com
 echo -e "\nThis script will conduct a zone transfer against a zone list file, wait for user input, and then conduct another zone transfer again the same list. It will then compare the two files for differences, outputing these results to results.txt\n"
 #
 echo -e "\nCtrl + Z to escape the script\n"
