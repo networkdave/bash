@@ -10,7 +10,7 @@ after_clean="output2-1.txt"
 now=`date +%j%I%M%S`
 results="results_$now.txt"
 #
-echo -e "\nThis script will conduct a zone transfer against a zone list file, wait for user input, and then conduct another zone transfer again the same list. It will then compare the two files for differences, outputing these results to results.txt\n"
+echo -e "\nThis script will conduct a zone transfer against a zone list file, wait for user input, and then conduct another zone transfer again the same list. It will then compare the two files for differences, outputing these results to $results\n"
 echo -e "\nCtrl + Z to escape the script\n"
 # Zone list file name goes to $zl
 echo -e "\nEnter the zone list file name:\n"
@@ -28,7 +28,7 @@ done
 # Sort $before, remove unneeded lines, save to $before_clean
 sort $before | grep -v \; | grep -v "^$" | grep -v ")" > $before_clean
 # Wait for user input to repeat the queries
-echo -e "\nPress [Enter] key to repeat the zone transfer after making some change to the data. After the second zone transfer job completes, a comparison will be made and dropped into results.txt"
+echo -e "\nPress [Enter] key to repeat the zone transfer after making some change to the data. After the second zone transfer job completes, a comparison will be made and dropped into $results"
 read
 # Loop through each line of the zone list, querying each zone, and append the results to $after
 cat $zl |
