@@ -37,7 +37,7 @@ do
 	echo "dig @$server axfr +multiline $line..."
 	dig @$server $line axfr +multiline >> $after
 done
-# Sort $before, remove unneeded lines, save to $after_clean
+# Sort $after, remove unneeded lines, save to $after_clean
 sort $after | grep -v \; | grep -v "^$" | grep -v ")" > $after_clean
 # Compare the sorted and cleaned up output files, saves to $results 
 echo `diff $before_clean $after_clean` | tr '<' '\n' > $results
