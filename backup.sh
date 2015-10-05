@@ -1,7 +1,7 @@
 #! /bin/bash
 # dave@networkdave.com
 #
-# use "bash -x compare.sh" for debugging
+# Use "bash -x compare.sh" for debugging if desired
 echo -e "\nThis script will conduct Grid backups appended with a time stamp and comment.\n"
 echo -e "\nCtrl + C to escape the script, it will loop until escaped.\n"
 # $GM to be used in the Curl commands
@@ -44,6 +44,6 @@ cp database.bak $BAK
 # Clean up the script files, comment out if you wish to retain
 rm database.bak
 rm response.txt
-echo -e "\n Ctrl + C to escape\n"
+echo -e "\nCtrl + C to escape\n"
 I=$(($I + 1))
 done
