@@ -1,7 +1,9 @@
 #! /bin/bash
 # dave@networkdave.com
 #
+# use "bash -x compare.sh" for debugging
 echo -e "\nThis script will conduct Grid backups appended with a time stamp and comment.\n"
+echo -e "\nCtrl + C to escape the script, it will loop until escaped.\n"
 # $GM to be used in the Curl commands
 echo -e "\nEnter the Grid Master address:\n"
 read GM
@@ -11,6 +13,10 @@ read USER
 # $PW to be used in Curl authentication, won't be echo'd into the terminal when typed
 echo -e "\nEnter your NIOS password:\n"
 read -s PW
+# Script will loop until the user escapes the script, intended to be left up throughout the day of a migration
+I=1
+while [ $I -le 1000 ]
+do
 # $COMMENT and $NOW will be combined into the backup name
 echo -e "\nEnter a short description of this backup, use A-Z, 1-9, and underscores only\n"
 read COMMENT
@@ -33,8 +39,11 @@ echo -e "\nYour backup is located at $BAK\n"
 echo -e "\nCleaning up...\n"
 # Curl lets the GM know the download is compelete
 curl -k1 -u $USER:$PW -X POST 'https://'"$GM"'/wapi/v1.7.3/fileop?_function=downloadcomplete' -H "Content-Type: application/json" -d '{ "token": "'"$TOKEN"'"}' -#
-# Save the backup using $NOW and $COMMENT
+# Save the backup using $BAK from above
 cp database.bak $BAK
-# Clean up the logistic files
+# Clean up the script files, comment out if you wish to retain
 rm database.bak
 rm response.txt
+echo -e "\n Ctrl + C to escape\n"
+I=$(($I + 1))
+done
