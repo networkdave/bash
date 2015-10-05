@@ -22,6 +22,7 @@ read VIEW
 cat $FILE | 
 while read LINE
 do
-	echo -e "\nCreating networks...\n"
+	echo -e "Creating network $LINE..."
 	curl -k1 -u $USER:$PW -X POST https://"$GM"/wapi/v1.7.3/network -d network="$LINE" -d network_view="$VIEW" 
+	echo -e "\n"
 done
