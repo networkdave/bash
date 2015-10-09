@@ -60,5 +60,5 @@ case $OPTION in
 		done
 	;;
 	*) 
-		echo -e "\nYou didn't pick 1 or 2";;
+		echo -e "\nYou didn't pick a valid option";;
 esac
