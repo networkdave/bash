@@ -39,12 +39,14 @@ do
 done
 # Sort $after, remove unneeded lines, save to $after_clean
 sort $after | grep -v \; | grep -v "^$" | grep -v ")" > $after_clean
-# Compare the sorted and cleaned up output files, saves to $results 
-echo `diff $before_clean $after_clean` | tr '<' '\n' > $results
+# Compare the sorted and cleaned up output files, saves to $results
+echo `diff $before_clean $after_clean` > catch
+echo `more catch | tr '\>' '\n' > $results`
 #
-echo -e "\nCheck $results (a blank file indicate no difference between AXFR batches)\n"
+echo -e "\nCheck $results (a blank file may indicate no difference between AXFR batches)\n"
 # Comment out the lines below if you wish to retain the AXFR files
-rm $before 
+rm catch
+rm $before
 rm $before_clean
 rm $after
 rm $after_clean
